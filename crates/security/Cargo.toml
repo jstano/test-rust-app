@@ -1,0 +1,9 @@
+[package]
+name = "security"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+serde = { version = "1.0", features = ["derive"] }
+stano-security = { path = "../../../modular-rust-platform/crates/stano-security" }
+tokio = { version = "1.0", features = ["sync"] }

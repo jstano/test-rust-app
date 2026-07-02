@@ -1,0 +1,21 @@
+[package]
+name = "launcher"
+version = "0.1.0"
+edition = "2024"
+
+[[bin]]
+name = "test_app"
+path = "src/main.rs"
+
+[dependencies]
+domain            = { path = "../domain" }
+infrastructure-db = { path = "../infrastructure-db" }
+services          = { path = "../services" }
+rest_api          = { path = "../rest_api" }
+stano-di          = { path = "../../../modular-rust-platform/crates/stano-di" }
+stano-launcher    = { path = "../../../modular-rust-platform/crates/stano-launcher" }
+stano-security    = { path = "../../../modular-rust-platform/crates/stano-security" }
+tokio             = { version = "1", features = ["macros", "rt-multi-thread"] }
+axum              = { version = "0.8.7" }
+anyhow            = "1"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
