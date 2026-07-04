@@ -1,4 +1,4 @@
-use stano_common::id_type;
+use stano_starter_domain::id_type;
 
 id_type!(BookId, uuid_v7);
 

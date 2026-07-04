@@ -1,9 +1,8 @@
 use async_trait::async_trait;
 use domain::{Book, BookId, BookRepository};
 use sea_orm::{DatabaseConnection, EntityTrait, Set};
-use stano_common::ServiceError;
-use stano_di_macros::service;
 use stano_seaorm::Mapper;
+use stano_starter::{service, ServiceError};
 use std::sync::Arc;
 
 use super::entity as book;

@@ -6,10 +6,6 @@ edition = "2024"
 [dependencies]
 domain            = { path = "../domain" }
 security          = { path = "../security" }
-stano-common      = { path = "../../../modular-rust-platform/crates/stano-common" }
-stano-di          = { path = "../../../modular-rust-platform/crates/stano-di" }
-stano-di-macros   = { path = "../../../modular-rust-platform/crates/stano-di-macros" }
-stano-security    = { path = "../../../modular-rust-platform/crates/stano-security" }
+stano-starter-service = { path = "../../../modular-rust-platform/crates/stano-starter-service" }
 serde             = { version = "1", features = ["derive"] }
 async-trait       = "0.1"
-uuid              = { version = "1", features = ["v4"] }

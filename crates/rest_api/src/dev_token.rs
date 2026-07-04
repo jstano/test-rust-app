@@ -6,9 +6,7 @@ use axum::{
 };
 use security::{AppClaims, Role};
 use serde::{Deserialize, Serialize};
-use stano_di::application_context::ApplicationContext;
-use stano_launcher::BootstrapConfig;
-use stano_security::encode_jwt;
+use stano_starter_rest::{application_context::ApplicationContext, encode_jwt, BootstrapConfig, Claims};
 use std::sync::Arc;
 
 #[derive(Debug, Deserialize)]
@@ -41,7 +39,7 @@ async fn dev_token_handler(
         .unwrap()
         .as_secs() as usize;
 
-    let claims = stano_security::Claims {
+    let claims = Claims {
         sub: format!("user-{}", uuid::Uuid::new_v4()),
         session_id: format!("sess-{}", uuid::Uuid::new_v4()),
         exp: now + config.jwt_config.expiration_seconds as usize,
@@ -54,7 +52,7 @@ async fn dev_token_handler(
     match encode_jwt(&claims, &config.jwt_config) {
         Ok(token) => Json(TokenResponse { token }).into_response(),
         Err(e) => {
-            let response = stano_axum::ErrorResponse::new(
+            let response = stano_starter_rest::ErrorResponse::new(
                 500,
                 "TOKEN_GENERATION_FAILED",
                 format!("Failed to generate token: {}", e),

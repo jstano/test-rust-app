@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<database xmlns="http://stano.com/database"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://stano.com/database http://schema.stano.com/schema.xsd">
+    <table name="books">
+        <columns>
+            <column name="id" type="uuid" required="true"/>
+            <column name="title" type="varchar" required="true"/>
+            <column name="author" type="varchar" required="true"/>
+        </columns>
+        <keys>
+            <primary>
+                <column name="id"/>
+            </primary>
+        </keys>
+    </table>
+</database>

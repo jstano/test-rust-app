@@ -6,10 +6,8 @@ edition = "2024"
 [dependencies]
 domain            = { path = "../domain" }
 migration         = { path = "../migration" }
-stano-di          = { path = "../../../modular-rust-platform/crates/stano-di" }
-stano-di-macros   = { path = "../../../modular-rust-platform/crates/stano-di-macros" }
+stano-starter     = { path = "../../../modular-rust-platform/crates/stano-starter" }
 stano-seaorm      = { path = "../../../modular-rust-platform/crates/stano-seaorm" }
-stano-common      = { path = "../../../modular-rust-platform/crates/stano-common" }
 sea-orm           = { version = "1.1", features = ["runtime-tokio-rustls", "sqlx-postgres", "macros"] }
 uuid              = { version = "1", features = ["v4", "v7", "serde"] }
 async-trait       = "0.1"

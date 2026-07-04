@@ -1,14 +1,17 @@
-use sea_orm_migration::prelude::*;
+use anyhow::Result;
+use schema_installer::{DirectoryMigrationSource, Migrator, SchemaInstallerConfigBuilder};
+use schema_sql_generator::common::generator_type::GeneratorType;
+use std::path::PathBuf;
 
-mod m20241201_000001_create_books;
+pub async fn run_migrations(database_url: &str) -> Result<()> {
+    let config = SchemaInstallerConfigBuilder::new()
+        .database_type(GeneratorType::Postgresql)
+        .connection_string(database_url.to_string())
+        .build()?;
 
-pub struct Migrator;
+    let migrations_dir = PathBuf::from(concat!(env!("CARGO_MANIFEST_DIR"), "/migrations"));
+    let source = Box::new(DirectoryMigrationSource { path: migrations_dir });
 
-#[async_trait::async_trait]
-impl MigratorTrait for Migrator {
-    fn migrations() -> Vec<Box<dyn MigrationTrait>> {
-        vec![Box::new(m20241201_000001_create_books::Migration)]
-    }
+    Migrator::migrate(&config, source).await?;
+    Ok(())
 }
-
-pub use sea_orm_migration::MigratorTrait;

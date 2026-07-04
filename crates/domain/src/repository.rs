@@ -1,7 +1,6 @@
 use crate::book::{Book, BookId};
 use async_trait::async_trait;
-use stano_common::ServiceError;
-use stano_di_macros::component;
+use stano_starter_domain::{component, ServiceError};
 
 #[component]
 #[async_trait]

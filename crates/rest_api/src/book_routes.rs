@@ -6,8 +6,7 @@ use axum::{
     Router,
 };
 use services::{BookService, CreateBookRequest};
-use stano_axum::AppJson;
-use stano_di::application_context::ApplicationContext;
+use stano_starter_rest::{application_context::ApplicationContext, AppJson};
 use std::sync::Arc;
 
 pub fn public_routes() -> Router<Arc<ApplicationContext>> {
@@ -26,7 +25,7 @@ async fn list_books(State(ctx): State<Arc<ApplicationContext>>) -> impl IntoResp
     match ctx.get_trait::<dyn BookService>().list_books().await {
         Ok(books) => (StatusCode::OK, Json(books)).into_response(),
         Err(e) => {
-            let api_error = stano_axum::ApiError::from(e);
+            let api_error = stano_starter_rest::ApiError::from(e);
             api_error.into_response()
         }
     }
@@ -39,7 +38,7 @@ async fn get_book(
     match ctx.get_trait::<dyn BookService>().get_book(&id).await {
         Ok(book) => (StatusCode::OK, Json(book)).into_response(),
         Err(e) => {
-            let api_error = stano_axum::ApiError::from(e);
+            let api_error = stano_starter_rest::ApiError::from(e);
             api_error.into_response()
         }
     }
@@ -52,7 +51,7 @@ async fn create_book(
     match ctx.get_trait::<dyn BookService>().create_book(req).await {
         Ok(book) => (StatusCode::CREATED, Json(book)).into_response(),
         Err(e) => {
-            let api_error = stano_axum::ApiError::from(e);
+            let api_error = stano_starter_rest::ApiError::from(e);
             api_error.into_response()
         }
     }
@@ -65,7 +64,7 @@ async fn delete_book(
     match ctx.get_trait::<dyn BookService>().delete_book(&id).await {
         Ok(_) => StatusCode::NO_CONTENT.into_response(),
         Err(e) => {
-            let api_error = stano_axum::ApiError::from(e);
+            let api_error = stano_starter_rest::ApiError::from(e);
             api_error.into_response()
         }
     }

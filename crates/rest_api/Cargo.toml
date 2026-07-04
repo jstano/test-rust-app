@@ -5,16 +5,9 @@ edition = "2024"
 
 [dependencies]
 services          = { path = "../services" }
-domain            = { path = "../domain" }
 security          = { path = "../security" }
-stano-di          = { path = "../../../modular-rust-platform/crates/stano-di" }
-stano-axum        = { path = "../../../modular-rust-platform/crates/stano-axum" }
-stano-launcher    = { path = "../../../modular-rust-platform/crates/stano-launcher" }
-stano-security    = { path = "../../../modular-rust-platform/crates/stano-security" }
+stano-starter-rest = { path = "../../../modular-rust-platform/crates/stano-starter-rest" }
 axum              = { version = "0.8.7" }
 serde             = { version = "1", features = ["derive"] }
-serde_json        = "1"
-tokio             = { version = "1", features = ["macros"] }
-anyhow            = "1"
 uuid              = { version = "1", features = ["v4"] }
 tracing           = "0.1"

@@ -2,8 +2,7 @@ use async_trait::async_trait;
 use domain::{Book, BookId, BookRepository};
 use security::{Role, SECURITY_CONTEXT};
 use serde::{Deserialize, Serialize};
-use stano_common::ServiceError;
-use stano_di_macros::{component, service};
+use stano_starter_service::{component, service, ServiceError};
 use std::sync::Arc;
 
 #[derive(Clone, Debug, Serialize, Deserialize)]
